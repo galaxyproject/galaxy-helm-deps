@@ -1,0 +1,67 @@
+name: Linting and deployment test on K3S
+on:
+  push:
+    branches:
+      - master
+      - anvil
+  pull_request: {}
+  workflow_dispatch: {}
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Kubectl
+        run: curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl && kubectl version || true
+      - name: Install Helm
+        run: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Helm dep update for galaxy-deps
+        run: cd galaxy-deps/ && helm dep update && cd ..
+      - name: Helm linting for galaxy-deps
+        run: helm lint galaxy-deps/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Helm
+        run: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Helm dep update for galaxy-deps
+        run: cd galaxy-deps/ && helm dep update && cd ..
+      - name: Start k8s locally
+        uses: jupyterhub/action-k3s-helm@v3
+        with:
+          k3s-version: v1.30.4+k3s1  # releases:  https://github.com/k3s-io/k3s/tags
+          metrics-enabled: false
+          traefik-enabled: false
+      - name: Verify function of k8s, kubectl, and helm
+        run: |
+          echo "kubeconfig: $KUBECONFIG"
+          kubectl version
+          kubectl get pods --all-namespaces
+
+          helm version
+          helm list
+      - name: Helm repo add galaxy
+        run: helm repo add galaxy https://github.com/CloudVE/helm-charts/raw/master
+      - name: Helm install galaxy-deps
+        run: time bash -c 'helm install --create-namespace --wait -n "galaxy-deps" "galaxy-deps" ./galaxy-deps --set cvmfs.cvmfscsi.cache.alien.enabled=false --wait --timeout=1200s'
+      - name: Get events
+        run: kubectl get events -n galaxy; kubectl get events -n csi-drivers;
+        if: always()
+      - name: Get pods, pvc, and pv
+        run: kubectl get pods -n galaxy; kubectl get pvc -n galaxy; kubectl get pv -n galaxy
+        if: always()
+      - name: Print web handler log
+        run: bash -c "kubectl logs -n galaxy $(kubectl -n galaxy get pods | grep -o '[^ ]*galaxy-web[^ ]*')"
+        if: always()
+      - name: Print job handler log
+        run: bash -c "kubectl logs -n galaxy $(kubectl -n galaxy get pods | grep -o '[^ ]*galaxy-job[^ ]*')"
+        if: always()
+      - name: Print workflow handler log
+        run: bash -c "kubectl logs -n galaxy $(kubectl -n galaxy get pods | grep -o '[^ ]*galaxy-workflow[^ ]*')"
+        if: always()
