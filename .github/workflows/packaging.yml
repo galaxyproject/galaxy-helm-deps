@@ -30,7 +30,7 @@ jobs:
           github-token: ${{ secrets.CHARTS_TOKEN }}
           charts-token: ${{ secrets.CHARTS_TOKEN }}
           github-labels: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
-          git-branch: ${{ github.event.pull_request.base.ref }}
+          git-branch: "master"
   package-from-manual:
     if: github.event.inputs.manual-package-invocation == 'y'
     name: Package and push manual invocation
