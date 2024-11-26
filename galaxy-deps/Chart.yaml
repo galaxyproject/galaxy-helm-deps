@@ -10,7 +10,8 @@ dependencies:
     repository: https://cloudnative-pg.github.io/charts/
     version: 0.22.1
     condition: postgresql.deploy
-    alias: postgresql
+    # cannot alias due to: https://github.com/cloudnative-pg/charts/issues/351
+    # alias: postgresql
     tags:
       - deploy-postgres
   - name: csi-s3
