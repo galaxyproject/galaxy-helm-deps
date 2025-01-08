@@ -8,7 +8,7 @@ icon: https://galaxyproject.org/images/galaxy-logos/galaxy_project_logo_square.p
 dependencies:
   - name: cloudnative-pg
     repository: https://cloudnative-pg.github.io/charts/
-    version: 0.22.1
+    version: 0.23.0
     condition: postgresql.deploy
     # cannot alias due to: https://github.com/cloudnative-pg/charts/issues/351
     # alias: postgresql
