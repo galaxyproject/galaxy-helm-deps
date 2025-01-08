@@ -19,7 +19,7 @@ and `Helm` ([instructions](https://helm.sh/docs/intro/install/)) installed.
 ## Dependency charts
 
 This chart relies on the features of other charts for common functionality:
-- [postgres-operator](https://github.com/zalando/postgres-operator) for the
+- [postgres-operator](https://cloudnative-pg.io/documentation/current/) for the
   database;
 - [galaxy-cvmfs-csi](https://github.com/CloudVE/galaxy-cvmfs-csi-helm) for linking the
   reference data to Galaxy and jobs based on CVMFS (default).
@@ -83,7 +83,7 @@ current default values can be found in `values.yaml` file.
 | `cvmfs.deploy`                             | Whether to deploy the CVMFS sub chart. Default is true.                                                                                                                                                    |
 | `cvmfs.{}`                                 | Refer to the [galaxy cvmfs chart](https://github.com/CloudVE/galaxy-cvmfs-csi-helm) for possible configuration values.                                                                                     |
 | `postgresql.deploy`                        | Whether to deploy the postgres sub chart. Default is true.                                                                                                                                                 |
-| `postgresql.{}`                            | Refer to the [postgres-operator chart](https://github.com/zalando/postgres-operator) for possible configuration values.                                                                                    |
+| `postgresql.{}`                            | Refer to the [postgres-operator chart](https://cloudnative-pg.io/documentation/current/) for possible configuration values.                                                                                    |
 | `rabbitmq.deploy`                          | Whether to deploy the rabbitmq sub chart. Default is true.                                                                                                                                                 |
 | `rabbitmq.{}`                              | Refer to the [rabbitmq-cluster-operator chart](https://github.com/rabbitmq/cluster-operator) for possible configuration values.                                                                            |
 | `s3csi.deploy`                             | Whether to deploy the csi-s3 sub chart as an alternative to cvmfs. Default is false.                                                                                                                       |
