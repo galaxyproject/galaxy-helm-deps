@@ -8,7 +8,7 @@ installing this chart prior to installing Galaxy helm.
 
 ## Supported software versions
 
-- Kubernetes 1.27+
+- Kubernetes 1.30+
 - Helm 3.5+
 
 ## Kubernetes cluster
@@ -46,7 +46,7 @@ helm repo update
 2. Install the chart
 
 ```console
-helm install --create-namespace -n "galaxy-deps" galaxy-deps galaxyproject/galaxy-deps
+helm install --create-namespace -n "galaxy-deps" galaxy-deps cloudve/galaxy-deps
 ```
 
 ### Using the chart from GitHub repo
@@ -54,7 +54,7 @@ helm install --create-namespace -n "galaxy-deps" galaxy-deps galaxyproject/galax
 1. Clone this repository:
 
 ```console
-git clone https://github.com/galaxyproject/galaxy-helm.git
+git clone https://github.com/galaxyproject/galaxy-helm-deps.git
 ```
 
 2. Setup the chart
