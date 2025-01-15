@@ -99,3 +99,4 @@ galaxy/charts/
 .vscode
 
 Chart.lock
+galaxy-deps/charts/
