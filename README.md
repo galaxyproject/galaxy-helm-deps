@@ -4,7 +4,7 @@ This is a companion repo to the [Galaxy Helm Chart](https://github.com/galaxypro
 for more conveniently deploying global environmental dependencies required by the Galaxy helm chart,
 such as the Postgres operator, RabbitMQ operator, CVMFS and S3FS. These dependencies cannot be
 bundled with the Galaxy Chart itself because they are usually installed once per cluster. We recommend
-installing this chart prior to installing Galaxy helm.
+installing this chart globally prior to installing an instance of Galaxy using the Galaxy helm chart.
 
 ## Supported software versions
 
