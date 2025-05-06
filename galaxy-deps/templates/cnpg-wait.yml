@@ -1,3 +1,5 @@
+{{- if .Values.postgresql.enabled }}
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -54,3 +56,4 @@ roleRef:
   kind: Role
   name: {{ .Release.Name }}-cnpg-wait
   apiGroup: rbac.authorization.k8s.io
+{{- end }}
