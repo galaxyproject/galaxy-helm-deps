@@ -1,4 +1,4 @@
-{{- if .Values.postgresql.enabled }}
+{{- if .Values.postgresql.deploy }}
 ---
 apiVersion: v1
 kind: Pod
