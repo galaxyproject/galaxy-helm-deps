@@ -2,6 +2,7 @@ postgresql:
   #- Whether to deploy the postgresl operator.
   #- In general, we recommend installing the operator globally in production.
   deploy: true
+  enabled: true
 
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
