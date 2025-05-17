@@ -1,7 +1,13 @@
-postgresql:
+cnpg:
   #- Whether to deploy the postgresl operator.
   #- In general, we recommend installing the operator globally in production.
   deploy: true
+  # nameOverride is set to work around https://github.com/cloudnative-pg/charts/issues/351
+  # See: https://github.com/cloudnative-pg/cloudnative-pg/issues/2466#issuecomment-2775117800
+  nameOverride: cloudnative-pg
+  image:
+    repository: ksuderman/cloudnative-pg
+    tag: "1.25.2"
 
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
