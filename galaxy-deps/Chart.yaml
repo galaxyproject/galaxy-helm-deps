@@ -30,6 +30,8 @@ dependencies:
   - name: rabbitmq-cluster-operator
     repository: https://charts.bitnami.com/bitnami
     version: 2.6.12
+#    repository: oci://registry-1.docker.io/bitnamicharts
+#    version: 4.4.34
     condition: rabbitmq.deploy
     alias: rabbitmq
     tags:

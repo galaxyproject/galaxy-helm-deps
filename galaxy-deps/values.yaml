@@ -27,3 +27,13 @@ s3csi:
 rabbitmq:
   deploy: true
   nameOverride: rabbitmq
+  rabbitmqImage:
+    repository: bitnamilegacy/rabbitmq
+  credentialUpdaterImage:
+    repository: bitnamilegacy/rmq-default-credential-updater
+  clusterConfiguration:
+    image:
+      repository: bitnamilegacy/rabbitmq-cluster-operator
+  msgTopologyOperator:
+    image:
+      repository: bitnamilegacy/rmq-messaging-topology-operator
