@@ -9,7 +9,7 @@ installing this chart globally prior to installing an instance of Galaxy using t
 ## Supported software versions
 
 - Kubernetes 1.30+
-- Helm 3.8+
+- Helm 3.5+
 
 ## Kubernetes cluster
 
