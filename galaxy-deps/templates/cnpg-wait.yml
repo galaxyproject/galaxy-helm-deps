@@ -12,7 +12,7 @@ spec:
   serviceAccountName: {{ .Release.Name }}-cnpg-wait
   containers:
     - name: wait
-      image: bitnami/kubectl
+      image: bitnamilegacy/kubectl
       command:
         - kubectl
         - wait
