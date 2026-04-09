@@ -1,7 +1,7 @@
 apiVersion: v2
 name: galaxy-deps
 type: application
-version: 1.1.1
+version: 1.2.0
 description: Chart containing environmental dependencies needed by Galaxy. Galaxy is an open, web-based platform for accessible, reproducible, and transparent computational biomedical research.
 icon: https://galaxyproject.org/images/galaxy-logos/galaxy_project_logo_square.png
 dependencies:
@@ -34,3 +34,9 @@ dependencies:
     alias: rabbitmq
     tags:
       - deploy-rabbitmq
+  - name: gateway-api-crds
+    repository: https://kubernetes-sigs.github.io/gateway-api/
+    version: 1.5.1
+    condition: gateway.deploy
+    tags:
+      - deploy-gateway-api
