@@ -35,7 +35,7 @@ dependencies:
     tags:
       - deploy-rabbitmq
   - name: gateway-api-crds
-    repository: https://kubernetes-sigs.github.io/gateway-api/
+    repository: https://wiremind.github.io/wiremind-helm-charts
     version: 1.5.1
     condition: gateway.deploy
     tags:
