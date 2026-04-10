@@ -3,6 +3,12 @@ postgresql:
   #- In general, we recommend installing the operator globally in production.
   deploy: true
 
+gateway:
+    # Deploy Gateway API CRDs. Many modern clusters already include these.
+    # Check first with: kubectl api-resources | grep gateway.networking.k8s.io
+    # For production scenarios, install CRDs separately as cluster-wide resources.
+    deploy: true
+
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
   #- Deploy the Galaxy-CVMFS-CSI Helm Chart. This is an optional dependency, and for production scenarios it should be deployed separately as a cluster-wide resource

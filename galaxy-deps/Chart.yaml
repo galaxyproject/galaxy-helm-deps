@@ -34,3 +34,9 @@ dependencies:
     alias: rabbitmq
     tags:
       - deploy-rabbitmq
+  - name: gateway-api-crds
+    repository: https://wiremind.github.io/wiremind-helm-charts
+    version: 1.5.1
+    condition: gateway.deploy
+    tags:
+      - deploy-gateway-api
