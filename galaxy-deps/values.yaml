@@ -7,7 +7,7 @@ gateway:
     # Deploy Gateway API CRDs. Many modern clusters already include these.
     # Check first with: kubectl api-resources | grep gateway.networking.k8s.io
     # For production scenarios, install CRDs separately as cluster-wide resources.
-    deploy: true
+    deploy: false
 
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
