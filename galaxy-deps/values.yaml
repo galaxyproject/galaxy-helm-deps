@@ -3,6 +3,12 @@ postgresql:
   #- In general, we recommend installing the operator globally in production.
   deploy: true
 
+gateway:
+    # Deploy Gateway API CRDs. Many modern clusters already include these.
+    # Check first with: kubectl api-resources | grep gateway.networking.k8s.io
+    # For production scenarios, install CRDs separately as cluster-wide resources.
+    deploy: false
+
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
   #- Repository server URLs and signing keys, including IDC, come from the
