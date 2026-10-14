@@ -24,13 +24,15 @@ jobs:
         with:
            persist-credentials: false
       - uses: cloudve/helm-ci@master
+        env:
+          CHARTS_BRANCH: master
         with:
           chart-name: galaxy-deps
           charts-repo: cloudve/helm-charts
           github-token: ${{ secrets.CHARTS_TOKEN }}
           charts-token: ${{ secrets.CHARTS_TOKEN }}
           github-labels: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
-          git-branch: "master"
+          git-branch: ${{ github.event.pull_request.base.ref }}
   package-from-manual:
     if: github.event.inputs.manual-package-invocation == 'y'
     name: Package and push manual invocation
@@ -65,7 +67,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          version=v$(cat galaxy/Chart.yaml | grep ^version: | awk '{print $2}')
+          version=v$(cat galaxy-deps/Chart.yaml | grep ^version: | awk '{print $2}')
           git tag -a $version -m "Automatic release of $version"
           git push origin $version
           gh release create $version --generate-notes --latest
