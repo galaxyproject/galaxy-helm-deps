@@ -5,6 +5,8 @@ postgresql:
 
 #- Configuration block if `cvmfs` is used as `refdata.type`
 cvmfs:
+  #- Repository server URLs and signing keys, including IDC, come from the
+  #- galaxy-cvmfs-csi dependency defaults.
   #- Deploy the Galaxy-CVMFS-CSI Helm Chart. This is an optional dependency, and for production scenarios it should be deployed separately as a cluster-wide resource
   deploy: true
   storageClassName: "galaxy-cvmfs"

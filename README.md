@@ -22,7 +22,9 @@ This chart relies on the features of other charts for common functionality:
 - [postgres-operator](https://cloudnative-pg.io/documentation/current/) for the
   database;
 - [galaxy-cvmfs-csi](https://github.com/CloudVE/galaxy-cvmfs-csi-helm) for linking the
-  reference data to Galaxy and jobs based on CVMFS (default).
+  reference data to Galaxy and jobs based on CVMFS (default). Its defaults
+  configure both `data.galaxyproject.org` and `idc.galaxyproject.org`, including
+  their server URLs and signing keys; no repository-specific values are needed.
 - [k8s-csi-s3](https://github.com/yandex-cloud/k8s-csi-s3/tree/master/deploy/helm/csi-s3) for linking
   reference data to Galaxy and jobs based on S3FS (optional/alternative to CVMFS).
 - [rabbitmq-cluster-operator](https://github.com/rabbitmq/cluster-operator) for deploying
